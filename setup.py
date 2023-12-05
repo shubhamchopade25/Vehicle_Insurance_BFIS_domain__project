@@ -15,7 +15,7 @@ def get_requirements(file_path:str)->List[str]:
     
         
 setup(
-    name='WBG_Financial_Project',
+    name='V_Insurance_Financial_project',
     version='0.0.1',
     author='Shubham',
     author_email='shubhamchopade7350@gmail.com',

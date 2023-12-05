@@ -6,4 +6,5 @@ xgboost
 dataclasses 
 ipykernel
 catboost
+joblib
 #-e .

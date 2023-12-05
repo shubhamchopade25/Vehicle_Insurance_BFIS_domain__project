@@ -6,6 +6,7 @@ from src.exception import CustomExceptions
 from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transform import DataTransformation,DataTransformationConfig
 
 
 @dataclass
@@ -20,8 +21,8 @@ class DataIngection:
     def initiated_data_ingection(self):
         logging.info("Entered the data ingestion method or component in this method")
         try:
-            df_train=pd.read_csv(r'D:\MY ALL  practice end to end projects\WBG_Financial_project\Notebook\Dataset\train_insurance.csv')
-            df_test=pd.read_csv(r'D:\MY ALL  practice end to end projects\WBG_Financial_project\Notebook\Dataset\test_insurance.csv')
+            df_train=pd.read_csv(r'D:\MY ALL  practice end to end projects\V_Insurance_Financial_project\Notebook\Dataset\train_insurance.csv')
+            df_test=pd.read_csv(r'D:\MY ALL  practice end to end projects\V_Insurance_Financial_project\Notebook\Dataset\test_insurance.csv')
             logging.info("Raw data read for using pandas ")
             os.makedirs(os.path.dirname(self.data_ingection.train_data_path),exist_ok=True)# this for give location where you are stored data.
             df_train.to_csv(self.data_ingection.raw_data_path1,index=False,header=True)
@@ -45,6 +46,10 @@ class DataIngection:
             
         except Exception as e:
             raise CustomExceptions(e,sys)
+        
 if __name__=="__main__":
     obj=DataIngection()
     train_data,test_data=obj.initiated_data_ingection()
+    
+    data_transformation=DataTransformation()
+    train_arr,test_arr, _, _=data_transformation.read_data_transform(train_data,test_data)
