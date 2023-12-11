@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>THIS CHECKING FOR ELIGIBILITY TO CLAIM INSURANCE</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #loader {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h2 {
+            color: orange; 
+        }
+
+        .insurance-image-container {
+            background-color: lightblue;
+            text-align: left; /* Center the image */
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            margin: 10px;
+        }
+
+        .insurance-image {
+            max-width: 100%; /* Make the image responsive */
+            height: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="insurance-image-container">
+        <img src="Templates\img_download.jpg" alt="Vehicle Insurance" class="insurance-image">
+    </div>
+    <button type="button" onclick="predictInsurance()" style="background-color: #4CAF50; color: white; padding: 10px 20px; margin-right: 10px;">Predict Insurance</button>
+    <div id="loader" style="display: none; color: #4CAF50; font-size: 16px;">Loading...</div>
+
+    <div id="prediction-results" style="display: none;">
+        {% if results is not none %}
+            <h2>The prediction is {{ results }}</h2>
+        {% endif %}
+    </div>
+
+    <script>
+        function predictInsurance() {
+            // Display loader while processing
+            var loader = document.getElementById("loader");
+            loader.style.display = "block";
+
+            // Simulate a delay for demonstration purposes (replace with actual prediction logic)
+            setTimeout(function() {
+                // Hide loader and show results
+                loader.style.display = "none";
+                var resultsDiv = document.getElementById("prediction-results");
+                resultsDiv.style.display = "block";
+            }, 3000);  // Simulated delay of 3 seconds
+
+            // Replace the above setTimeout block with your actual prediction logic
+            // Example: Make an AJAX request to the server for prediction
+            // Example:
+            // fetch('/predict', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({ /* your data here */ }),
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Process the prediction results
+            //     console.log(data);
+            //     // Update the resultsDiv with the actual prediction data
+            // });
+        }
+    </script>
+</body>
+</html>

@@ -7,7 +7,8 @@ from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_transform import DataTransformation,DataTransformationConfig
-
+from src.components.model_training import modelTraining #,ModelTrainingConfig
+from src.Utils import save_object,model_evaluation
 
 @dataclass
 class DataIngectionconfig:
@@ -52,4 +53,7 @@ if __name__=="__main__":
     train_data,test_data=obj.initiated_data_ingection()
     
     data_transformation=DataTransformation()
-    train_arr,test_arr, _, _=data_transformation.read_data_transform(train_data,test_data)
+    input_feature_train_df,target_feature_train_df, input_feature_test_df, _=data_transformation.read_data_transform(train_data,test_data)
+    
+    data_training=modelTraining()
+    print(data_training.model_training_step(input_feature_train_df,target_feature_train_df))

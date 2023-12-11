@@ -7,4 +7,5 @@ dataclasses
 ipykernel
 catboost
 joblib
+Flask
 #-e .

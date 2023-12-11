@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Vehicle Insurance Prediction </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 5;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 250vh;
+        }
+        
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: left;
+            box-sizing: border-box; /* Add box-sizing for better width calculation */
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        input, select {
+            width: calc(100% - 16px); /* Adjust width calculation to include padding */
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #results {
+            margin-top: 20px;
+        }
+        
+        /* Additional styling for better visual consistency */
+        p {
+            margin: 8px 0;
+        }
+        
+        span.blue-text {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{{ url_for('user_data_prediction')}}" method="POST">
+        <div>
+            <p>EX:- ID IS <span style="color:blue">816393</span>LIKE THIS.</p> <label for="ID">ID:</label> <input type="number" id="ID" name="ID" placeholder="ID">
+        </div>
+        <div>
+            <label for="AGE">CHOOSE YOUR AGE:</label>
+            <select id="AGE" name="AGE">
+                <option value="2">40-64</option>
+                <option value="1">65+</option>
+                <option value="3">26-39</option>
+                <option value="0">16-25</option>
+            </select>
+        </div>
+        <div> <label for="GENDER">GENDER:</label> <select id="GENDER" name="GENDER" required>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select> </div>
+            <div>
+                <label for="DRIVING_EXPERIENCE">CHOOSE YOUR DRIVING EXPERIENCE:</label>
+                <select id="DRIVING_EXPERIENCE" name="DRIVING_EXPERIENCE">
+                    <option value="2">20-29y</option>
+                    <option value="0">0-9y</option>
+                    <option value="3">10-19y</option>
+                    <option value="1">30y+</option>
+                </select>
+            </div>
+            <div>
+                <label for="EDUCATION">CHOOSE YOUR EDUCATION:</label>
+                <select id="EDUCATION" name="EDUCATION">
+                    <option value="0">University</option>
+                    <option value="1">High School</option>
+                    <option value="2">None</option>
+                </select>
+            </div>
+            <div>
+                <label for="INCOME">CHOOSE YOUR INCOME:</label>
+                <select id="INCOME" name="INCOME">
+                    <option value="0">Middle Class</option>
+                    <option value="1">Upper Class</option>
+                    <option value="2">Working Class</option>
+                    <option value="3">Poverty</option>
+                </select>
+            </div>
+        <div>
+            <p>EX:- CREDIT_SCORE IS <span style="color:blue">0.638050</span>LIKE THIS.</p> <label for="CREDIT_SCORE">CREDIT_SCORE:</label> <input type="text" id="CREDIT_SCORE" name="CREDIT_SCORE" value="0.0">
+        </div>
+        <div> <label for="VEHICLE_OWNERSHIP">VEHICLE_OWNERSHIP:</label> <select id="VEHICLE_OWNERSHIP" name="VEHICLE_OWNERSHIP" required>
+                <option value="0">NO</option>
+                <option value="1">YES</option>
+            </select> </div>
+                <div>
+                <label for="VEHICLE_YEAR">VEHICLE_YEAR:</label>
+                <select id="VEHICLE_YEAR" name="VEHICLE_YEAR" required>
+                    <option value="0">after 2015</option>
+                    <option value="1">before 2015</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="MARRIED">MARRIED:</label>
+                <select id="MARRIED" name="MARRIED" required>
+                    <option value="0">NO</option>
+                    <option value="1">YES</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="CHILDREN">CHILDREN:</label>
+                <select id="CHILDREN" name="CHILDREN" required>
+                    <option value="0">NO</option>
+                    <option value="1">YES</option>
+                </select>
+            </div>
+            
+            <div>
+                <p>EX:- POSTAL_CODE IS <span style="color:blue">10238</span>LIKE THIS.</p> <label for="POSTAL_CODE">POSTAL_CODE:</label><input type="text" id="POSTAL_CODE" name="POSTAL_CODE" value="0">
+            </div>
+            <div>
+                <p>EX:- ANNUAL_MILEAGE IS <span style="color:blue">11000</span>LIKE THIS.</p> <label for="ANNUAL_MILEAGE">ANNUAL_MILEAGE:</label> <input type="text" id="ANNUAL_MILEAGE" name="ANNUAL_MILEAGE" value="0">
+            </div>
+            <div>
+                <p>EX:- SPEEDING_VIOLATIONS IS <span style="color:blue">Range(0 to 19)</span>LIKE THIS.</p> <label for="SPEEDING_VIOLATIONS">SPEEDING_VIOLATIONS:</label><input type="text" id="SPEEDING_VIOLATIONS" name="SPEEDING_VIOLATIONS" value="0">
+            </div>
+            </div>
+            <div>
+                <p>EX:- DUIS IS <span style="color:blue">Range(0 to 6)</span>LIKE THIS.</p> <label for="DUIS">DUIS:</label> <input type="text" id="DUIS" name="DUIS" value="0">
+            </div>
+            <div>
+                <p>EX:- PAST_ACCIDENTS IS <span style="color:blue">Range(0 to 14)</span>LIKE THIS.</p> <label for="PAST_ACCIDENTS">PAST_ACCIDENTS:</label><input type="text" id="PAST_ACCIDENTS" name="PAST_ACCIDENTS" value="0">
+            </div>
+            <div>
+                <label for="TYPE_OF_VEHICLE">CHOOSE YOUR TYPE OF VEHICLE:</label>
+                <select id="TYPE_OF_VEHICLE" name="TYPE_OF_VEHICLE">
+                    <option value="3">Sports Car</option>
+                    <option value="0">HatchBack</option>
+                    <option value="2">Sedan</option>
+                    <option value="1">SUV</option>
+                </select>
+            </div>
+            <input type="submit" value="Submit" style="background-color: green; color: white;"><input type="reset" value="Reset" style="background-color: red; color: white;">
+
+            </div> 
+    </form>
+</body>
+
+</html>
